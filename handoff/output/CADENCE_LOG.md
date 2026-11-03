@@ -25,3 +25,13 @@ Rules for this session: work only inside Virtuoso/Assura/Quantus; back up before
 ## Report screenshots (DRC paused at the student's request, 06:57)
 - S26 captured: screenshots/S26_layout_full_pre_drc_fix.jpg (full layout, View -> Zoom To Fit All, nothing selected, LSW visible). Taken BEFORE the DRC fixes, so retake after the final layout (Morning_Guide Step 1.4.4).
 - Not yet captured (need a new AnyDesk session; the free session timed out): S27 (instance names), S28 (pin zooms), all schematics/ADE/waveform/PVT shots (G1-G4), LVS/PEX shots.
+
+## G1/G2 progress (AnyDesk session 2, 06:57-07:03; student said: plain screenshots are fine, only keep ones I am sure about)
+- Backup of nothing changed in the design in this session. ADE settings only.
+- Captured: screenshots/S01_baseline_schematic_fit_view.jpg (Low_AmpSd_base, whole circuit, fit view; labels small, retake zoomed halves later if wanted), screenshots/G2_testbench_low_amp1.jpg (low_amp1 bench: V0=2, V2=1.016 V acm=1, V3=1, instance of Low_AmpSd).
+- ADE L for low_amp1 had an empty setup; loaded the saved state `state1` (dc + ac 1..1G, 20 pts/decade; outputs out, gain_dB, phase_deg). Model library section was `mc` when I found it.
+- **Finding (needs the student's OK):** AC gain depends on the model section. Reading the /out magnitude plot at low frequency: section tt gives about 172 V = 44.7 dB, section mc gives about 216 V = 46.7 dB. ProjectState's 46.66 dB therefore matches `mc`, not `tt`. The checklist G0 step 2 says tt; that is inconsistent with ProjectState. These are plot readings, not marker values. The sized AC gain at tt is not a ProjectState number.
+- This also supports my earlier assumption that the baseline numbers are mc [CHECK still open for the baseline run itself].
+- Captured but NOT markered: screenshots/G2b_sized_AC_mc_no_markers.jpg (sized, section mc, gain/phase left, /out magnitude right). Needs markers (DC gain, unity-gain frequency, phase at unity gain) before it goes in the report. The first tt run's plot was not saved (wrong section for the report).
+- ADE model section left at `mc` (as found). ADE state1 loaded in session; nothing saved.
+- Still to do: markers on this plot, baseline run (swap in Low_AmpSd_base), transient bench, PVT, S27/S28.
