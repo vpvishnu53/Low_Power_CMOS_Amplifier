@@ -1,5 +1,0 @@
-Continue my VLSI System Design project (23ECE302/383, Fig. 2 op-amp, Cadence Virtuoso 6.1.8, gpdk045). It is submission time.
-Read first, in this order: ProjectState.md (esp. sections 6b, 10, 11, 12 and 8b), CLAUDE.md (rules), then report/Report_Final_Draft_v2.docx (the latest report; edit it directly, NEVER run report/build/build_report.py because it would erase the manual edits).
-Working folder: C:\Users\MY PC\Desktop\SEM 5\VLSI_SLD\LATEST (request folder access to it; use ONLY this folder).
-Where we left off (2026-11-03 evening): Figs 4, 16, 17, 18 and the S20 power reading are real Cadence screenshots in the report, and the delay numbers are updated (tPLH 79.5, tPHL 118.1, tp 98.8 ns, PDP 3.23 pJ). Still open: (1) PVT screenshots S22 (nominal tt), S21 (ADE setup forms), Fig 19 (ss), and the ff case, (2) cover page details, (3) layout DRC 13 errors / LVS / PEX if time.
-Do not invent numbers. One step at a time, detailed numbered steps starting from the Library Manager. I send screenshots, you crop them and put them in the report, then show me the page.
