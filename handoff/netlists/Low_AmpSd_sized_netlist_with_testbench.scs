@@ -1,0 +1,75 @@
+// Library name: Sld_80
+// Cell name: Low_AmpSd
+// View name: schematic
+subckt Low_AmpSd out vdd vin\+ vin\- vss
+    M15 (out net28 net48 vdd) g45p2svt w=(640n) l=300n nf=1 as=96f ad=96f \
+        ps=1.58u pd=1.58u nrd=234.375m nrs=234.375m sa=150n sb=150n \
+        sd=200n sca=16.90188 scb=0.01567 scc=0.00043 m=(1)
+    M14 (b4 net28 vdd vdd) g45p2svt w=(320n) l=150n nf=1 as=48f ad=48f \
+        ps=940n pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=24.37763 scb=0.02712 scc=0.00086 m=(1)
+    M13 (net28 net28 vdd vdd) g45p2svt w=(320n) l=150n nf=1 as=48f ad=48f \
+        ps=940n pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=24.37763 scb=0.02712 scc=0.00086 m=(1)
+    M12 (net48 b3 vdd vdd) g45p2svt w=(640n) l=300n nf=1 as=96f ad=96f \
+        ps=1.58u pd=1.58u nrd=234.375m nrs=234.375m sa=150n sb=150n \
+        sd=200n sca=18.96637 scb=0.01896 scc=0.00049 m=(1)
+    M11 (b3 b3 vdd vdd) g45p2svt w=(320n) l=150n nf=1 as=48f ad=48f \
+        ps=940n pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=24.37763 scb=0.02712 scc=0.00086 m=(1)
+    M7 (net14 b2 vdd vdd) g45p2svt w=(320n) l=150n nf=1 as=48f ad=48f \
+        ps=940n pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=24.37763 scb=0.02712 scc=0.00086 m=(1)
+    M8 (b2 b2 vdd vdd) g45p2svt w=(320n) l=150n nf=1 as=48f ad=48f ps=940n \
+        pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=24.37763 scb=0.02712 scc=0.00086 m=(1)
+    M6 (net39 net14 vss vss) g45n2svt w=(640n) l=300n nf=1 as=96f ad=96f \
+        ps=1.58u pd=1.58u nrd=234.375m nrs=234.375m sa=150n sb=150n \
+        sd=200n sca=66.29318 scb=0.05004 scc=0.00647 m=(1)
+    M5 (out b4 net39 vss) g45n2svt w=(640n) l=300n nf=1 as=96f ad=96f \
+        ps=1.58u pd=1.58u nrd=234.375m nrs=234.375m sa=150n sb=150n \
+        sd=200n sca=74.07407 scb=0.06107 scc=0.00757 m=(1)
+    M4 (vss b4 b4 vss) g45n2svt w=(320n) l=150n nf=1 as=48f ad=48f ps=940n \
+        pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=114.17432 scb=0.08203 scc=0.01268 m=(1)
+    M3 (net28 b1 vss vss) g45n2svt w=(320n) l=150n nf=1 as=48f ad=48f \
+        ps=940n pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=114.17432 scb=0.08203 scc=0.01268 m=(1)
+    M2 (net14 net14 vss vss) g45n2svt w=(320n) l=150n nf=1 as=48f ad=48f \
+        ps=940n pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=114.17432 scb=0.08203 scc=0.01268 m=(1)
+    M1 (b1 b1 vss vss) g45n2svt w=(320n) l=150n nf=1 as=48f ad=48f ps=940n \
+        pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=114.17432 scb=0.08203 scc=0.01268 m=(1)
+    M0 (b1 b1 vss vss) g45n2svt w=(320n) l=150n nf=1 as=48f ad=48f ps=940n \
+        pd=940n nrd=468.75m nrs=468.75m sa=150n sb=150n sd=200n \
+        sca=114.17432 scb=0.08203 scc=0.01268 m=(1)
+    M10 (b3 vin\+ b1 vss) g45n2svt w=(1.6u) l=150n nf=1 as=240f ad=240f \
+        ps=3.5u pd=3.5u nrd=93.75m nrs=93.75m sa=150n sb=150n sd=200n \
+        sca=46.53535 scb=0.04483 scc=0.00447 m=(1)
+    M9 (b2 vin\- b1 vss) g45n2svt w=(1.6u) l=150n nf=1 as=240f ad=240f \
+        ps=3.5u pd=3.5u nrd=93.75m nrs=93.75m sa=150n sb=150n sd=200n \
+        sca=46.53535 scb=0.04483 scc=0.00447 m=(1)
+    I0 (vdd b1) isource dc=2u type=dc
+    C0 (out vss) capacitor c=1p
+ends Low_AmpSd
+// End of subcircuit definition.
+
+// Library name: Sld_80
+// Cell name: low_amp1
+// View name: schematic
+I0 (out net2 net1 net3 0) Low_AmpSd
+V3 (net3 0) vsource dc=1 type=dc
+V2 (net1 0) vsource dc=1.028V mag=1 type=dc
+V0 (net2 0) vsource dc=2 type=dc
+simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub

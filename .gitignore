@@ -1,0 +1,6 @@
+# third-party / faculty files, not for the public repo
+*.pdf
+*.doc
+# scratch extracts
+_paper_text.txt
+_template_text.txt
