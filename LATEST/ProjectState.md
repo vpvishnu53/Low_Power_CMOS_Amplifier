@@ -1,6 +1,6 @@
 # ProjectState.md — VLSI System Design Project (23ECE302 / 23ECE383)
 
-Last updated: 2026-11-03 (late; report assembled as report/Report_Final_Draft.docx; layout routed, DRC 13 errors left; student has since made further changes on the lab PC that are NOT yet recorded here - see section 10). Update this file after every completed step.
+Last updated: 2026-11-03 18:xx (evening session: report v2 with real screenshots for Figs 4, 16, 17, 18 and S20; PVT screenshots S21, S22, Fig 19 and case B still to do; layout DRC 13 errors left). Latest report = `report/Report_Final_Draft_v2.docx` (+ .pdf). See sections 10, 11, 12. Update this file after every completed step.
 
 ## 1. Assignment
 - Circuit assigned (Dr. Kaveri Hatti): **Fig. 2 — Cascade Second Stage Topology for improved gain in weak inversion region**
@@ -69,19 +69,19 @@ Last updated: 2026-11-03 (late; report assembled as report/Report_Final_Draft.do
 ## 6b. SIZED results (with sizing) and PVT (done 2026-11-02)
 **Sizing v1 applied in Low_AmpSd** (backup of unsized circuit = `Low_AmpSd_base`): M9, M10 (input pair) W = 1.6u, L = 150n; M5, M6 (NMOS) and M12, M15 (PMOS) W = 640n, L = 300n; all others unchanged (320n/150n). Ibias still 2u. Verified in the Spectre netlist.
 - New trip point: vin+ = **1.016089 V** (out DC = 0.981 V at that bias), offset smaller than baseline (1.028 V).
-- **AC (sized):** DC gain **46.66 dB**, GBW **1.726 MHz**, phase margin **~90.0 deg** (phase -90.005 deg at 1.728 MHz).
-- **Transient (sized, section mc):** tPLH = 120.0 ns, tPHL = 116.6 ns, **tp = 118.3 ns**; avg_I = -16.354 uA -> **power 32.71 uW**; **PDP = 3.87 pJ**.
+- **AC (sized):** DC gain **46.66 dB**, GBW **1.726 MHz**, phase margin **~90.0 deg** (phase -90.005 deg at 1.728 MHz) = Nov 2 photo run. **Re-run 2026-11-03 16:50 (real screenshot, V2 = 1.016 V, mc): DC gain 46.636 dB (marker at 9.01 Hz), 0 dB crossing at 1.72485 MHz (920.654 udB), phase -90.0024 deg at 1.72119 MHz, PM about 90.0 deg. The report now uses 46.64 dB / 1.725 MHz.**
+- **Transient (sized): 2026-11-03 run (student confirmed correct, used in the report): tPLH = 79.5 ns, tPHL = 118.1 ns, tp = 98.8 ns; avg_I = -16.354 uA (calculator shows -16.35E-6) -> power 32.71 uW; PDP = 3.23 pJ.** (Earlier Nov 2 photo run, no longer used: tPLH 120.0, tPHL 116.6, tp 118.3 ns, PDP 3.87 pJ.) Model section of the 11-03 run not confirmed; report text still says mc.
 - PVT nominal row only: same measurement on section **tt**, 27 C, 2.0 V: tPLH 82.1 ns, tPHL 119.7 ns, tp 100.9 ns, avg_I = -16.227 uA, power 32.45 uW, PDP 3.27 pJ.
 
 **With vs without sizing (both columns are mc runs, same method; confirmed by the student 2026-11-03):**
 | Parameter | Without | With | Change |
 |---|---|---|---|
-| DC gain | 44.6 dB | 46.66 dB | +2 dB |
-| GBW | ~0.7 MHz | 1.73 MHz | 2.5x |
+| DC gain | 44.6 dB | 46.64 dB (46.66 on Nov 2) | +2.04 dB |
+| GBW | ~0.7 MHz | 1.725 MHz (1.726 on Nov 2) | 2.4-2.5x |
 | Phase margin | ~90.3 deg | ~90.0 deg | same |
 | Power (transient avg) | 24.67 uW | 32.71 uW | +33% |
-| Delay tp | 213 ns | 118.3 ns | -44% |
-| PDP | 5.26 pJ | 3.87 pJ | -26% |
+| Delay tp | 213 ns | 98.8 ns | -53.6% |
+| PDP | 5.26 pJ | 3.23 pJ | -38.6% |
 
 **PVT (sized circuit, follower test bench low_amp1_tran; model file sections available: tt, ff, ss, fs, sf, mc):**
 | Case | Section | Temp | VDD | tp | Power | PDP |
@@ -120,7 +120,7 @@ Findings: delay varies ~2x, power ~5x across PVT; power is the weak point (20 uW
       Ideas: longer L on output/cascode devices and mirrors for gain; larger W/L on input pair M9/M10 for gm; mirror ratio of M12 vs M11 (paper S6/S4); keep power < 20 uW
 - [x] Table: Parameter | Value without sizing | Value with sizing (Power, Delay, PDP) (in 6b)
 - [x] PVT analysis (nominal, slow, fast; table in 6b). Screenshots of PVT still to be taken cleanly.
-- [ ] Clean report screenshots: baseline and sized schematics, test benches, DC curve, AC gain/phase with markers (both versions), transient waveforms with markers (both versions), power readings (avg_I and V0 current), PVT results
+- [~] Clean report screenshots: DONE for test bench (Fig 4), sized DC (Fig 16), sized AC (Fig 17), sized transient (Fig 18), S20 power reading. TODO: S21, S22, Fig 19 (ss), case B, baseline AC/transient photos if wanted (see section 12)
 - [x] Layout placed and routed (connectivity clean), see 6c
 - [ ] DRC: 13 errors left (see 6c), fix by hand
 - [ ] LVS (Assura, extract.rul + compare.rul; handle ideal I0 and C0)
@@ -133,6 +133,7 @@ Font: Times New Roman 12 everywhere, headings 14.
 Title of project; title of paper; details of paper; circuit diagram; theory and working principle; tool and technology used; screenshot of simulator circuit; DC and transient waveforms (no sizing); screenshot of circuit with sizing; DC and transient waveforms (with sizing); table (power, delay, PDP, without vs with sizing) with screenshots as proof; PVT analysis screenshot; layout screenshot; layout simulation waveform; other info; conclusion; problems faced; problems resolved; any other comment; references.
 
 ## 8b. NEXT ACTION (resume here)
+**UPDATE 2026-11-03 evening: resume with section 12 OPEN ITEMS (delay numbers already updated): (2) PVT screenshots S22 (nominal tt), S21 (setup forms), Fig 19 (ss), case B (ff), (3) cover page, (4) layout DRC/LVS/PEX if time. Report to edit = report/Report_Final_Draft_v2.docx (edit directly; never run build_report.py).**
 **UPDATE 2026-11-03: layout placed and routed (see 6c). NEXT = fix the 13 remaining DRC errors (or run LVS first, it does not depend on DRC), then LVS, PEX, post-layout simulation, screenshots, report. Before any new simulation, reset ADE: model section mc, temperature 27, V0 = 2.0 (mc for every DC, AC and transient number; tt/ss/ff only for the PVT runs; confirmed by the student 2026-11-03).**
 **UPDATE 2026-11-02: sizing, the comparison table and PVT are DONE (see 6b).**
 (The block below is the original Step 7 plan, kept for history; it is already done.)
@@ -151,16 +152,30 @@ Remaining after sizing: comparison table, PVT (on sized circuit), layout of size
 - Which delay definition the faculty expects (propagation delay vs settling time).
 
 ## 10. REPORT STATUS and FILE LOCATIONS (2026-11-03)
-- ONE working folder: `C:\Users\MY PC\Desktop\SEM 5\VLSI_SLD\LATEST` (copy of everything current; the cloud sandbox is only scratch).
-  - `report/Report_Final_Draft.docx` and `.pdf` = latest report (34 pages). `report/build/build_report.py` regenerates it from `report/build/Report_Draft.docx` + `report/build/img/` + `screenshots/`.
+- ONE working folder (hand-off folder, ready to commit): `C:\Users\MY PC\Desktop\SEM 5\VLSI_SLD\LATEST` (copy of everything current; the cloud sandbox is only scratch).
+  - **`report/Report_Final_Draft_v2.docx` and `.pdf` = LATEST report (34 pages)**, edited directly (not generated). `report/Report_Final_Draft.docx` is an older state (has Figs 16/17 only). `Report_Final_Draft_screenshot_style.*` (phone photos made to look like screenshots) and `Report_Final_Draft_backup_before_screens.docx` are superseded, kept only as backups (listed in .gitignore).
+  - **DO NOT run `report/build/build_report.py`**: it regenerates from `Report_Draft.docx` and would lose every manual edit in v2.
   - `ProjectState.md`, `CLAUDE.md`, `NEW_CHAT_PROMPT.md`, `Low_AmpSd_baseline_netlist.scs` = hand-off docs. `docs/` = CADENCE_LOG, PROGRESS_LOG, Screenshot_Checklist, Morning_Guide.
-- Report content: honest, layout section says DRC 13 errors left, LVS/PEX/post-layout NOT performed. Cover page (names, register numbers, batch) still yellow = student fills in. S20, S21, S22 screenshots still missing.
-- Screenshots in the report are partly OLD (phone photos of baseline test bench, sized DC/AC/transient, ss waveform). Student says they have CHANGED A LOT since (new sizing/results/layout?) but the changes were never written to this file. FIRST THING in the next chat: ask the student for the lab PC's current ProjectState / numbers / fresh screenshots, update sections 6b/6c, then rebuild the report (`python3 report/build/build_report.py`, paths at top of the script).
+- Report content: honest, layout section says DRC 13 errors left, LVS/PEX/post-layout NOT performed. Cover page (names, register numbers, batch) still yellow = student fills in. S21 and S22 placeholders still open (S20 is done, see section 12).
+- Screenshots: Figs 4, 16, 17, 18 and S20 are now real Virtuoso screenshots (section 12). Still phone photos: Fig 19 (ss PVT waveform) and, optionally, others from the baseline set.
 - Case B (ff, -40 C, 2.2 V) now measured: tp 51.9 ns, PDP 4.02 pJ.
 - Still unconfirmed: the 1.04443 us / 11.0794 us waveform is case B (assumed).
 
-## 11. NEW sized DC sweep (2026-11-03 10:11)
-- Fresh sweep of V2 (0.8 to 1.2 V, vin- = 1 V, 27 C): marker M1 at vin+ = **1.0637 V**, out = **1.000975 V**. Curve is shallow (out ~0.12 V at 0.8 V up to ~1.12 V at 1.2 V), steep part near 0.85 V. Used as Figure 16 in the report (img/S14_dc_sized_marker.png).
-- It DISAGREES with the Nov 2 17:31 photo (S14_dc_sized.jpg: sharp 0-2 V transition, marker 1.016089 V / 1.000001 V). Netlist is identical (sized, V3 = 1, Ibias 2u). Cause unknown; leading suspect = model section (student says mc now; Nov 2 run section unrecorded). Test: rerun the DC sweep on tt and compare.
-- AC/transient/PVT numbers in section 6b were taken with V2 = 1.016089 V on the Nov 2 state; they should be re-checked (re-run AC at V2 = 1.016089 and compare with 46.66 dB / 1.726 MHz). If they do not reproduce, re-measure and update 6b and the report.
-- Report text updated: DC sentence and Fig. 16 caption use the 1.0637 V marker; the "trip point 1.016089" wording was changed to "bias used for the AC and transient runs".
+## 11. The 1.0637 V DC sweep (RESOLVED as a wrong run, 2026-11-03)
+- An earlier sweep today (V2 0.8 to 1.2 V, shallow curve, marker 1.0637 V / 1.000975 V) disagreed with the Nov 2 photo. It was put into the report for a while and later REMOVED.
+- Re-run 2026-11-03 17:02 in the same ADE window (V2 sweep 0.9 to 1.125 V, vin- = 1 V, only /out plotted): sharp transition, marker M4 at vin+ = **1.016094 V**, out = **1.000859 V**. This reproduces the Nov 2 result (1.016089 V). Report Fig 16 and the text now use it. V2 = 1.016 V for AC and transient.
+- Cause of the shallow 1.0637 V curve was never found. Leading suspect: leftover ADE conditions (model section or an expression/output left over from an earlier session). The discarded screenshot is kept at screenshots/discarded_S14_dc_sweep_0p8_1p2_wrong.png.
+
+## 12. Session log 2026-11-03 evening (report v2) and OPEN ITEMS
+**Report v2 figure map (all real Virtuoso screenshots, cropped to the window):** Fig 4 (low_amp1 test bench, V2 1.016 V acm 1; caption reworded), Fig 16 (DC sweep, 1.016094 V), Fig 17 (AC, markers M1 9.01 Hz 46.636 dB, M2 1.72485 MHz 920.654 udB, M3 1.72119 MHz -90.0024 deg), Fig 18 (transient, sized follower), "Figure 18 (continued)" = S20 calculator shot. AC numbers (46.64 dB, 1.725 MHz, +2.04 dB, shortfalls 13.36 dB and 0.28 MHz) were changed everywhere in the report.
+**Transient run today (low_amp1_tran, ADE L (3), tran 0 to 40u moderate, T = 27 C):** markers in rising 1.005 us, out rising 1.0845 us, in falling 11.015 us, out falling 11.1331 us -> **tPLH 79.5 ns, tPHL 118.1 ns, tp 98.8 ns**. Supply current from the Virtuoso calculator: `average(IT("/V0/PLUS"))` = **-16.35E-6 A** (-16.35 uA, power 32.70 uW; same as the earlier -16.354 uA).
+**ITEM 1 DONE (2026-11-03 evening): delay numbers updated in the report** to tPLH 79.5, tPHL 118.1, tp 98.8 ns, PDP 3.23 pJ, delay change -53.6 %, PDP change -38.6 % (text, Table 2, conclusion; the 'rise and fall almost equal' sentence was replaced). Power stays 32.71 uW (+32.6 %). Caveat: the model section of today's tran run was never confirmed (tt nominal gave 82.1 / 119.7 ns; power matches mc). If the faculty asks, rerun on mc and compare.
+**OPEN ITEM 2: PVT screenshots.** S21 (Model Libraries form with section + ADE window with temperature), S22 (nominal tt, 27 C, 2.0 V: expect tPLH 82.1, tPHL 119.7 ns, avg -16.227 uA), Fig 19 (ss, 125 C, 1.8 V: still a phone photo, expect M1 1.15875 us, M2 11.2493 us, avg -9.065 uA), case B (ff, -40 C, 2.2 V) screenshot (avg -35.23 uA, tp 51.9 ns).
+**OPEN ITEM 3:** cover page (names, register numbers, batch). Layout section still says DRC 13 errors; LVS, PEX, post-layout not done.
+**ADE / Virtuoso tips learned today:**
+- DC sweep: in ADE Outputs only /out should have Plot ticked (untick gain_dB, phase_deg; they are AC expressions). Set sweep 0.9 to 1.125 V, step 0.0005, component parameter V2 `dc`.
+- An expression output (e.g. `avg_I`) is only evaluated when the Setting Outputs box **"Plotted/Evaluated" is ticked** (Plot = yes in the table). Save Options stays blank for expressions. `/V0/PLUS` needs Save ticked.
+- If the Value column stays empty: Tools -> Calculator in ADE L, type `average(IT("/V0/PLUS"))` in the buffer (NOT `?result "tran"`, that failed with "expression evaluation failed"), press Enter, then evaluate with the toolbar icon whose tooltip says Evaluate.
+- Transient plot: show only /in and /out (hide /V0/PLUS with the eye icon); place 4 markers at the 1.0 V crossings.
+- Plot not opening: Results -> Plot Outputs -> Transient, and set Plot after simulation = Auto.
+- Check and save warning about the hanging `out` wire is harmless.

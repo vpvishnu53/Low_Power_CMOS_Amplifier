@@ -44,3 +44,11 @@
 - Student confirmed: **every DC, AC and transient run uses model section mc** (baseline, sized and post-layout). tt, ss and ff are only for the PVT runs. So the Table 2 comparison (44.6 -> 46.66 dB etc.) is mc vs mc and is valid.
 - Changed: `ProjectState.md` and `ProjectState_updated.md` (8b reset now says mc; 6b notes), `Screenshot_Checklist.md` (G0.2 and the post-G4 reset now mc, G3 [CHECK] removed, G9 says mc), `Morning_Guide.md` (Option B regression test, Step 3.3 conditions, 3.3.3 restore, and the pre/post table now uses the mc schematic values: tp 118.3 ns, 16.354 uA, 32.71 uW, 3.87 pJ), `Report_Draft.md` and `Report_Draft.docx` (tool section states mc for all non-PVT results, Table 2 [CHECK] removed, post-layout table shows mc values only), `CADENCE_LOG.md` (open items marked resolved).
 
+## Update 2026-11-03 evening: report v2 and hand-off sync
+- Real Cadence screenshots (cropped) now in `report/Report_Final_Draft_v2.docx`: Fig 4 test bench, Fig 16 DC sweep (trip 1.016094 V, out 1.000859 V), Fig 17 AC (46.636 dB, 1.72485 MHz, -90.0024 deg), Fig 18 transient (tPLH 79.5, tPHL 118.1, tp 98.8 ns), S20 calculator reading average(IT("/V0/PLUS")) = -16.35E-6 A.
+- AC numbers changed in the report: 46.66 -> 46.64 dB, 1.726 -> 1.725 MHz, +2.06 -> +2.04 dB, shortfalls 13.34 -> 13.36 dB and 0.27 -> 0.28 MHz.
+- The shallow 1.0637 V DC sweep was a wrong run (not reproduced, removed from the report). See ProjectState section 11.
+- Open: PVT screenshots S21, S22, Fig 19, case B; cover page; layout DRC/LVS/PEX.
+- Hand-off files refreshed: ProjectState.md, NEW_CHAT_PROMPT.md, README.md, .gitignore, COMMIT_MESSAGE.txt. build_report.py must NOT be run (it would overwrite v2).
+- Delay numbers updated in the report (text, Table 2, conclusion): tPLH 79.5, tPHL 118.1, tp 98.8 ns, PDP 3.23 pJ, delay -53.6 %, PDP -38.6 %. Model section of that run not confirmed.
+
