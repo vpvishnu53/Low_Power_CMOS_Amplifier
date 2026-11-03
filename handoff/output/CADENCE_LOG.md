@@ -31,12 +31,12 @@ Rules for this session: work only inside Virtuoso/Assura/Quantus; back up before
 - Captured: screenshots/S01_baseline_schematic_fit_view.jpg (Low_AmpSd_base, whole circuit, fit view; labels small, retake zoomed halves later if wanted), screenshots/G2_testbench_low_amp1.jpg (low_amp1 bench: V0=2, V2=1.016 V acm=1, V3=1, instance of Low_AmpSd).
 - ADE L for low_amp1 had an empty setup; loaded the saved state `state1` (dc + ac 1..1G, 20 pts/decade; outputs out, gain_dB, phase_deg). Model library section was `mc` when I found it.
 - **Finding (needs the student's OK):** AC gain depends on the model section. Reading the /out magnitude plot at low frequency: section tt gives about 172 V = 44.7 dB, section mc gives about 216 V = 46.7 dB. ProjectState's 46.66 dB therefore matches `mc`, not `tt`. The checklist G0 step 2 says tt; that is inconsistent with ProjectState. These are plot readings, not marker values. The sized AC gain at tt is not a ProjectState number.
-- This also supports my earlier assumption that the baseline numbers are mc [CHECK still open for the baseline run itself].
+- This also supports my earlier assumption that the baseline numbers are mc [resolved 2026-11-03: the student confirmed the baseline was also mc].
 - Captured but NOT markered: screenshots/G2b_sized_AC_mc_no_markers.jpg (sized, section mc, gain/phase left, /out magnitude right). Needs markers (DC gain, unity-gain frequency, phase at unity gain) before it goes in the report. The first tt run's plot was not saved (wrong section for the report).
 - ADE model section left at `mc` (as found). ADE state1 loaded in session; nothing saved.
 - Still to do: markers on this plot, baseline run (swap in Low_AmpSd_base), transient bench, PVT, S27/S28.
 
 ## Decision and marker attempt (07:04-07:06)
-- Student confirmed: use model section `mc` for all AC and transient numbers in the report (tt only for the typical corner row of PVT, if at all). Checklist G0.2 and Morning_Guide wording that says "section tt" must be updated accordingly. [TO DO in docs]
+- Student confirmed: use model section `mc` for all AC and transient numbers in the report (tt only for the typical corner row of PVT, if at all). Checklist G0.2 and Morning_Guide wording that says "section tt" must be updated accordingly. [DONE 2026-11-03: docs updated, see PROGRESS_LOG]
 - Marker attempt on the sized AC plot (mc): Marker -> Create Marker... in this Virtuoso build does NOT snap Y to the trace. With Attach to Trace ticked and X = 1 Hz, it placed M1 at 1.0 Hz / -63.284 dB (the Y field keeps a stale value; the real gain at 1 Hz is about +46.7 dB). That marker was wrong, so it was deleted (Marker -> Delete All). No marker values are recorded. Typing a Y value would be inventing data, so I did not.
 - Next try: read DC gain / unity-gain frequency / phase margin via ADE calculator functions or ADE Results -> Print, or the viewer's Measurements menu, instead of the Create Marker dialog.

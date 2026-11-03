@@ -120,7 +120,7 @@ B.4 **Update both test benches** `low_amp1` and `low_amp1_tran`:
 3. Place analogLib **cap** (`i`, Library analogLib, Cell cap): between the `out` net and ground; press `q`, **Capacitance = 1p**.
 4. `X` in each bench.
 - Check: 0 errors in both benches. Open ADE L, Simulation -> Netlist -> Recreate, then Netlist -> Display and look for the lines `I1 (...) isource dc=2u` and `capacitor c=1p`, and that the instance of Low_AmpSd has six nets.
-- **Regression test:** run the DC sweep, AC and transient again with the **same settings** as before (section tt, 27 C, V0 = 2.0 V, V2 = 1.016089 V). Expected: trip point 1.016089 V and the AC gain 46.66 dB, GBW 1.726 MHz (the same numbers as before, ProjectState section 6b). **If they differ, stop and tell me** (probably the idc direction or the capacitor is wrong).
+- **Regression test:** run the DC sweep, AC and transient again with the **same settings** as before (section mc, 27 C, V0 = 2.0 V, V2 = 1.016089 V). Expected: trip point 1.016089 V and the AC gain 46.66 dB, GBW 1.726 MHz (the same numbers as before, ProjectState section 6b). **If they differ, stop and tell me** (probably the idc direction or the capacitor is wrong).
 
 B.5 **Add the `ibias` pin in the layout.**
 1. In the layout (Layout XL): Connectivity -> Update -> Components and Nets [CHECK]. This brings the new pin `ibias` and removes I0/C0 from the source. Check the message window: no errors; the Navigator now lists `ibias` among the pins.
@@ -192,7 +192,7 @@ Click OK and take screenshot **S36** of the form first.
 
 ### Step 3.3 Run the post-layout simulations
 
-Use the **same** conditions as the schematic run you compare with. Recommended: model section `tt`, 27 C, V0 = 2.0 V, for both pre- and post-layout, because ProjectState has the tt transient values for the sized circuit (tp 100.9 ns, 32.45 µW, 3.27 pJ), but the AC values (46.66 dB, 1.726 MHz) were not recorded with a named section [CHECK]. So **first re-run the schematic AC on tt** (switch view list back to the normal one, or run before you add av_extracted) and use that as the "pre-layout" column.
+Use the **same** conditions as the schematic results: model section `mc`, 27 C, V0 = 2.0 V, for both pre- and post-layout. All recorded schematic numbers of the sized circuit are mc (AC 46.66 dB, 1.726 MHz, PM about 90.0 deg; transient tp 118.3 ns, 32.71 µW, 3.87 pJ), so no extra schematic re-run is needed for the pre-layout column. tt is only for the PVT nominal row.
 
 3.3.1 `low_amp1` (AC): V2 DC = 1.016089, AC magnitude 1; ac 1 Hz to 1 GHz, 20 points per decade; outputs `gain_dB = dB20(VF("/out"))` and `phase_deg = phase(VF("/out"))`; Run.
 - Check: a gain curve like before. Markers: low-frequency gain, the 0 dB crossing and phase there. Screenshot **S39**. Expect the post-layout numbers to be close to the schematic ones (parasitic C slightly lower GBW).
@@ -201,7 +201,7 @@ Use the **same** conditions as the schematic run you compare with. Recommended: 
 3.3.2 `low_amp1_tran` (transient): same settings as before (stop 40u, moderate). Set the same view list there (Setup -> Environment is per ADE session). Run. Markers on the 1.0 V crossings (input rising / falling and output rising / falling). Screenshot **S40**. Then `average(IT("/V0/PLUS"))` in the calculator. Screenshot **S41**.
 - Compute: tPLH, tPHL, tp = average, power = 2 V x |avg current|, PDP = power x tp. (Or send me the numbers and I compute them in Python.)
 
-3.3.3 **Restore:** remove `av_extracted` from the switch view list, reset the model section to tt / 27 C / V0 = 2.0 V, so that the benches use the schematic again.
+3.3.3 **Restore:** remove `av_extracted` from the switch view list, reset the model section to mc / 27 C / V0 = 2.0 V, so that the benches use the schematic again.
 
 ### Step 3.4 Pre- vs post-layout comparison (fill this table, then paste into the report section "Output waveform for the layout")
 
@@ -209,16 +209,16 @@ All "Schematic" values below are the recorded ones; replace them with fresh runs
 
 | Parameter | Schematic (sized) | Post-layout | Change (%) |
 |---|---|---|---|
-| Model section / temperature / VDD | tt, 27 C, 2.0 V | tt, 27 C, 2.0 V | n/a |
-| DC gain | 46.66 dB [CHECK section] | [TO FILL] | [TO FILL] |
-| GBW (0 dB crossing) | 1.726 MHz [CHECK section] | [TO FILL] | [TO FILL] |
-| Phase margin | about 90.0 deg [CHECK section] | [TO FILL] | [TO FILL] |
-| tPLH | 82.1 ns (tt) | [TO FILL] | [TO FILL] |
-| tPHL | 119.7 ns (tt) | [TO FILL] | [TO FILL] |
-| tp = (tPLH + tPHL)/2 | 100.9 ns (tt) | [TO FILL] | [TO FILL] |
-| Average supply current | 16.227 uA (tt) | [TO FILL] | [TO FILL] |
-| Power (2 V x avg current) | 32.45 uW (tt) | [TO FILL] | [TO FILL] |
-| PDP = power x tp | 3.27 pJ (tt) | [TO FILL] | [TO FILL] |
+| Model section / temperature / VDD | mc, 27 C, 2.0 V | mc, 27 C, 2.0 V | n/a |
+| DC gain | 46.66 dB | [TO FILL] | [TO FILL] |
+| GBW (0 dB crossing) | 1.726 MHz | [TO FILL] | [TO FILL] |
+| Phase margin | about 90.0 deg | [TO FILL] | [TO FILL] |
+| tPLH | 120.0 ns | [TO FILL] | [TO FILL] |
+| tPHL | 116.6 ns | [TO FILL] | [TO FILL] |
+| tp = (tPLH + tPHL)/2 | 118.3 ns | [TO FILL] | [TO FILL] |
+| Average supply current | 16.354 uA | [TO FILL] | [TO FILL] |
+| Power (2 V x avg current) | 32.71 uW | [TO FILL] | [TO FILL] |
+| PDP = power x tp | 3.87 pJ | [TO FILL] | [TO FILL] |
 
 Change (%) = (post - schematic) / schematic x 100. Interpretation to write: the extracted wire resistance and capacitance add load, so a small increase in delay and a small drop in GBW is expected; a very large change would point to a layout problem (for example a very long wire) or a setup problem (missing bias). [CHECK: write the actual comment from your numbers]
 

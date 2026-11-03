@@ -88,7 +88,7 @@ Net names: b1 is the bias/tail node, b2 and b3 are the diode-connected PMOS load
 - **Cadence Virtuoso 6.1.8 (64-bit):** Schematic Editor for entry, Analog Design Environment ADE L for DC, AC and transient analyses and the calculator for measurements, Spectre as the circuit simulator (relative tolerance 1e-3, temperature 27 C unless stated otherwise).
 - **Layout:** Virtuoso Layout Suite XL, with connectivity-driven layout from the schematic and the Virtuoso Space-based Router for routing.
 - **Verification and extraction:** Assura DRC and Assura LVS, Quantus (parasitic extraction, PEX) [CHECK: confirm which extractor is finally used].
-- **Technology:** gpdk045, the Cadence 45 nm generic PDK. Devices: `nmos2v` (model g45n2svt) and `pmos2v` (model g45p2svt), the thick-oxide 2 V devices. Baseline size W = 320 nm, L = 150 nm, m = 1 for every transistor. Supply VDD = 2.0 V. Model sections available: tt, ff, ss, fs, sf, mc.
+- **Technology:** gpdk045, the Cadence 45 nm generic PDK. Devices: `nmos2v` (model g45n2svt) and `pmos2v` (model g45p2svt), the thick-oxide 2 V devices. Baseline size W = 320 nm, L = 150 nm, m = 1 for every transistor. Supply VDD = 2.0 V. Model sections available: tt, ff, ss, fs, sf, mc. All DC, AC and transient results (without sizing, with sizing and post-layout) use section mc; tt, ss and ff are used only for the PVT analysis.
 - **Library and cells:** library Sld_80 with cells `Low_AmpSd` (op-amp, schematic and symbol), `Low_AmpSd_base` (unsized backup), `low_amp1` (DC and AC test bench) and `low_amp1_tran` (unity-gain follower transient test bench).
 - **Documents and scripts:** reports and tables compiled with Python (python-docx); arithmetic (power, PDP, percentages) rechecked in Python.
 
@@ -163,10 +163,10 @@ These values were verified in the Spectre netlist of the sized schematic. The ne
 
 [SCREENSHOT S20: calculator / output table showing average(IT("/V0/PLUS")) = -16.354 uA for the sized circuit (section mc)]
 
-The same sized circuit on model section tt, 27 °C, 2.0 V gives tPLH = 82.1 ns, tPHL = 119.7 ns, tp = 100.9 ns, average current -16.227 µA, power 32.45 µW and PDP 3.27 pJ (see the PVT section).
+For reference only, the PVT nominal run of the sized circuit (model section tt, 27 °C, 2.0 V) gives tPLH = 82.1 ns, tPHL = 119.7 ns, tp = 100.9 ns, average current -16.227 µA, power 32.45 µW and PDP 3.27 pJ (see the PVT section).
 
 ## PROVIDE THE VALUES FOR THE FOLLOWING ALONG WITH THE SCREENSHOTS AS PROOF:
-**Table 2: without and with sizing (same measurement method for both columns; sized values from model section mc).** [CHECK: confirm that the baseline was also run with section mc]
+**Table 2: without and with sizing (same measurement method and model section mc for both columns).**
 
 | Parameter | Value without sizing | Value with sizing | Change |
 |---|---|---|---|
@@ -252,19 +252,19 @@ DRC status at the time of this draft (13 errors left): OXIDETHK.SP.1 (1 error, t
 [SCREENSHOT S36-S38: Quantus extraction form, the extracted view in the Library Manager and the extracted view opened] [TO FILL: after PEX]
 
 ## SCREENSHOT OF THE OUTPUT WAVEFORM OBTAINED FROM THE SIMULATOR FOR THE LAYOUT:
-Post-layout simulation uses the parasitic-extracted view of Low_AmpSd in the same test benches and the same measurement method as the schematic results. Results below are placeholders until the extraction is done.
+Post-layout simulation uses the parasitic-extracted view of Low_AmpSd in the same test benches and the same measurement method as the schematic results. Both columns use model section mc, 27 °C, 2.0 V. Results below are placeholders until the extraction is done.
 
 | Parameter | Schematic (sized) | Post-layout | Change |
 |---|---|---|---|
 | DC gain | 46.66 dB | [TO FILL: post-layout DC gain] | [TO FILL] |
 | GBW | 1.726 MHz | [TO FILL: post-layout GBW] | [TO FILL] |
 | Phase margin | about 90.0° | [TO FILL: post-layout PM] | [TO FILL] |
-| tPLH | 120.0 ns (mc) / 82.1 ns (tt) | [TO FILL] | [TO FILL] |
-| tPHL | 116.6 ns (mc) / 119.7 ns (tt) | [TO FILL] | [TO FILL] |
-| tp | 118.3 ns (mc) / 100.9 ns (tt) | [TO FILL: post-layout tp] | [TO FILL] |
-| Average supply current | 16.354 µA (mc) / 16.227 µA (tt) | [TO FILL] | [TO FILL] |
-| Transient average power | 32.71 µW (mc) / 32.45 µW (tt) | [TO FILL] | [TO FILL] |
-| PDP | 3.87 pJ (mc) / 3.27 pJ (tt) | [TO FILL: post-layout PDP] | [TO FILL] |
+| tPLH | 120.0 ns | [TO FILL] | [TO FILL] |
+| tPHL | 116.6 ns | [TO FILL] | [TO FILL] |
+| tp | 118.3 ns | [TO FILL: post-layout tp] | [TO FILL] |
+| Average supply current | 16.354 µA | [TO FILL] | [TO FILL] |
+| Transient average power | 32.71 µW | [TO FILL] | [TO FILL] |
+| PDP | 3.87 pJ | [TO FILL: post-layout PDP] | [TO FILL] |
 
 [SCREENSHOT S39: AC gain and phase of the extracted view in low_amp1 with markers at the DC gain and the 0 dB crossing] [TO FILL]
 

@@ -1,0 +1,4 @@
+Continue my VLSI System Design project (23ECE302/383, Fig. 2 op-amp, Cadence Virtuoso 6.1.8, gpdk045). It is submission time.
+Read first, in this order: ProjectState.md (esp. sections 6b, 6c, 10, 8b), CLAUDE.md (rules), then report/Report_Final_Draft.docx.
+Working folder: C:\Users\MY PC\Desktop\SEM 5\VLSI_SLD\LATEST (request folder access to it; use ONLY this folder).
+Where we left off: the report is assembled but uses older screenshots/numbers. I changed things on the lab PC since then (I will send the new ProjectState / numbers / screenshots). Update the state file, replace the old screenshots, rebuild the report with report/build/build_report.py, and give me the steps for the remaining screenshots (S20, S21, S22) starting from the Library Manager. Do not invent numbers. One step at a time, detailed numbered steps.

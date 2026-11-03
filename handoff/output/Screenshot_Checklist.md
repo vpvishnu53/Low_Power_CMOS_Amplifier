@@ -9,7 +9,7 @@ Items marked [CHECK] are menu names or key presses I am not 100% sure of on your
 ## G0. Before you start (5 minutes)
 
 1. **How to take the pictures.** You see the lab PC only through AnyDesk, so take the screenshots on the computer where AnyDesk is open: Windows key + Shift + S, drag a rectangle around the Virtuoso window, then paste into Paint or save from the Snipping Tool. Make the AnyDesk window full screen first so that text is sharp. Zoom the Virtuoso window (not the picture) so that text is readable at report size.
-2. **Reset ADE** (ProjectState.md section 8b): in `low_amp1` and `low_amp1_tran`, ADE L -> Setup -> Model Libraries: gpdk045.scs section `tt`; Setup -> Temperature: 27; V0 = 2.0 V. You will change the section and temperature again in group G4 (PVT), so reset them at the start and after G4.
+2. **Reset ADE** (ProjectState.md section 8b): in `low_amp1` and `low_amp1_tran`, ADE L -> Setup -> Model Libraries: gpdk045.scs section `mc` (mc for everything except the PVT runs); Setup -> Temperature: 27; V0 = 2.0 V. You will change the section and temperature again in group G4 (PVT), so reset them at the start and after G4.
 3. **Make a backup first:** in the Library Manager copy `low_amp1` and `low_amp1_tran` to `low_amp1_bak` and `low_amp1_tran_bak` (right-click the cell -> Copy [CHECK], all views). If the swap in G1 goes wrong you can go back.
 4. **Waveform window tips:** each marker should show its X and Y values in the marker readout; zoom (press `f` in the waveform window to fit) so that the marker numbers do not overlap the curve; set a plot title or keep the legend so that the signal names (`vin+`, `out`, `gain_dB`, `phase_deg`) are readable.
 
@@ -86,7 +86,7 @@ Swap: instance cell name back to `Low_AmpSd`; set V2 DC = `1.016089` (keep AC ma
 
 ## G3. Test bench `low_amp1_tran` (follower, transient): baseline, sized
 
-ADE L settings for this bench: tran, stop 40u, accuracy moderate. Input: vpulse on vin+ (0.8 V to 1.2 V, delay 1u, rise/fall 10n, width 10u, period 20u), output tied to vin-. Model section **mc** for both versions (ProjectState section 6b: use the same method and the mc runs for the table; I assumed baseline was also mc [CHECK]).
+ADE L settings for this bench: tran, stop 40u, accuracy moderate. Input: vpulse on vin+ (0.8 V to 1.2 V, delay 1u, rise/fall 10n, width 10u, period 20u), output tied to vin-. Model section **mc** for both versions (confirmed by the student: every non-PVT run is mc).
 
 ### G3a. Baseline
 Swap the instance to `Low_AmpSd_base`. `X`. Netlist -> Recreate. Run.
@@ -137,7 +137,7 @@ Do all three runs in one sitting. The model section is changed in ADE L -> Setup
 **S25** -- one summary picture.
 - Either the three waveforms overlaid in one window (use "Overlay"/keep previous results, [CHECK]) or a Windows Paint collage of S22-S24 with the case names. Optional: Case C (tt, 125 C, 2.0 V) if you want to fill that row.
 
-After G4: reset to tt, 27 C, V0 = 2.0 V.
+After G4: reset to mc, 27 C, V0 = 2.0 V.
 
 ## G5. Layout (Sld_80/Low_AmpSd/layout)
 
@@ -184,7 +184,7 @@ After G4: reset to tt, 27 C, V0 = 2.0 V.
 
 ## G9. Post-layout simulation (extracted view in the same test benches)
 
-Use the same settings as the schematic runs you compare with (section tt or mc, same V0/temperature), see Morning_Guide.md part 3.
+Use the same settings as the schematic runs you compare with (section mc, 27 C, V0 = 2.0 V), see Morning_Guide.md part 3.
 
 **S42** -- ADE L showing how the extracted view is selected: Setup -> Environment, Switch View List with the extracted view name first (or the config view window with Low_AmpSd bound to the extracted view).
 

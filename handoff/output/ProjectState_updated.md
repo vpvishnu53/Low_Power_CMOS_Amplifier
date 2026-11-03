@@ -82,9 +82,9 @@ Last updated: 2026-11-03 (layout routed, DRC 13 errors left; next: DRC fixes, LV
 - New trip point: vin+ = **1.016089 V** (out DC = 0.981 V at that bias), offset smaller than baseline (1.028 V).
 - **AC (sized):** DC gain **46.66 dB**, GBW **1.726 MHz**, phase margin **~90.0 deg** (phase -90.005 deg at 1.728 MHz).
 - **Transient (sized, section mc):** tPLH = 120.0 ns, tPHL = 116.6 ns, **tp = 118.3 ns**; avg_I = -16.354 uA -> **power 32.71 uW**; **PDP = 3.87 pJ**.
-- Same measurement on section **tt**, 27 C, 2.0 V: tPLH 82.1 ns, tPHL 119.7 ns, tp 100.9 ns, avg_I = -16.227 uA, power 32.45 uW, PDP 3.27 pJ.
+- PVT nominal row only: same measurement on section **tt**, 27 C, 2.0 V: tPLH 82.1 ns, tPHL 119.7 ns, tp 100.9 ns, avg_I = -16.227 uA, power 32.45 uW, PDP 3.27 pJ.
 
-**With vs without sizing (use the mc runs, same method for both):**
+**With vs without sizing (both columns are mc runs, same method; confirmed by the student 2026-11-03):**
 | Parameter | Without | With | Change |
 |---|---|---|---|
 | DC gain | 44.6 dB | 46.66 dB | +2 dB |
@@ -144,7 +144,7 @@ Font: Times New Roman 12 everywhere, headings 14.
 Title of project; title of paper; details of paper; circuit diagram; theory and working principle; tool and technology used; screenshot of simulator circuit; DC and transient waveforms (no sizing); screenshot of circuit with sizing; DC and transient waveforms (with sizing); table (power, delay, PDP, without vs with sizing) with screenshots as proof; PVT analysis screenshot; layout screenshot; layout simulation waveform; other info; conclusion; problems faced; problems resolved; any other comment; references.
 
 ## 8b. NEXT ACTION (resume here)
-**UPDATE 2026-11-03: layout placed and routed (see 6c). NEXT = fix the 13 remaining DRC errors (or run LVS first, it does not depend on DRC), then LVS, PEX, post-layout simulation, screenshots, report. Before any new simulation, reset ADE: model section tt, temperature 27, V0 = 2.0.**
+**UPDATE 2026-11-03: layout placed and routed (see 6c). NEXT = fix the 13 remaining DRC errors (or run LVS first, it does not depend on DRC), then LVS, PEX, post-layout simulation, screenshots, report. Before any new simulation, reset ADE: model section mc, temperature 27, V0 = 2.0 (mc for every DC, AC and transient number; tt/ss/ff only for the PVT runs; confirmed by the student 2026-11-03).**
 **UPDATE 2026-11-02: sizing, the comparison table and PVT are DONE (see 6b).**
 (The block below is the original Step 7 plan, kept for history; it is already done.)
 **Step 7 (sizing, change 1):**

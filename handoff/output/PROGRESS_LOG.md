@@ -28,7 +28,7 @@
 **What I could not verify and you must check:**
 1. Every `[CHECK]` (16 in the report, more in the guide) and every `[TO FILL]` (51 in the report). Yellow highlight in the docx. Remove them before submitting.
 2. All Virtuoso / Assura / Quantus menu names and the DRC rule interpretations in Morning_Guide.md are from general knowledge, not tested on your install.
-3. The baseline transient and power numbers: I assumed they were measured with model section mc like the sized one (ProjectState says "use the mc runs"). Confirm.
+3. The baseline transient and power numbers: I assumed they were measured with model section mc like the sized one (ProjectState says "use the mc runs"). Confirm. **Resolved 2026-11-03: the student confirmed every non-PVT run (baseline and sized) was mc.**
 4. Theory text: eq. (4) of the paper is garbled in the PDF text extraction; I described it in words and marked it [CHECK] for you to retype. Why power went UP after sizing was not isolated; marked [CHECK].
 5. Report title wording, delay definition (tp between 1.0 V crossings of a follower) and the spec items not measured (slew rate, ICMR, output swing, PSRR, CMRR) should be agreed with the faculty.
 6. Paper inconsistency: PM 57.78 deg (Sec. III-A) vs 68 deg (Conclusion).
@@ -39,3 +39,8 @@
 1. Open `output\PROGRESS_LOG.md` (this), then skim `Morning_Guide.md` top section.
 2. On the lab PC (Step 0 of the guide): back up the layout and the schematic in the Library Manager, then run Assura DRC and take screenshot S31 (the 13 errors before any fix).
 3. Then fix DRC (Part 1), LVS (Part 2, Option B), PEX (Part 3). Capture screenshots as you go using Screenshot_Checklist.md.
+
+## Update 2026-11-03: model section decision applied to the docs
+- Student confirmed: **every DC, AC and transient run uses model section mc** (baseline, sized and post-layout). tt, ss and ff are only for the PVT runs. So the Table 2 comparison (44.6 -> 46.66 dB etc.) is mc vs mc and is valid.
+- Changed: `ProjectState.md` and `ProjectState_updated.md` (8b reset now says mc; 6b notes), `Screenshot_Checklist.md` (G0.2 and the post-G4 reset now mc, G3 [CHECK] removed, G9 says mc), `Morning_Guide.md` (Option B regression test, Step 3.3 conditions, 3.3.3 restore, and the pre/post table now uses the mc schematic values: tp 118.3 ns, 16.354 uA, 32.71 uW, 3.87 pJ), `Report_Draft.md` and `Report_Draft.docx` (tool section states mc for all non-PVT results, Table 2 [CHECK] removed, post-layout table shows mc values only), `CADENCE_LOG.md` (open items marked resolved).
+
