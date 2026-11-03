@@ -21,3 +21,7 @@ Rules for this session: work only inside Virtuoso/Assura/Quantus; back up before
 - DRC run drc4 on the restored layout shows the original 13 errors again (1/2/2/3/2/3), so the baseline is intact.
 - AnyDesk free licence shows "Session will be closed in 5 min..." (non-commercial limit), so sessions are time-limited; reconnecting needs the student.
 - Tool notes for this lab PC: keyboard shortcuts typed over AnyDesk (F5, r) did not work, use the menus and toolbar; the screen can lag several seconds behind clicks, wait and re-screenshot before the next click; the Error Layer Window must be raised from the top-bar app menu (click "Error Layer Window" at the top, pick it from the list; do not click Quit); Assura asks "stop viewing current job?" before each new run, answer Yes.
+
+## Report screenshots (DRC paused at the student's request, 06:57)
+- S26 captured: screenshots/S26_layout_full_pre_drc_fix.jpg (full layout, View -> Zoom To Fit All, nothing selected, LSW visible). Taken BEFORE the DRC fixes, so retake after the final layout (Morning_Guide Step 1.4.4).
+- Not yet captured (need a new AnyDesk session; the free session timed out): S27 (instance names), S28 (pin zooms), all schematics/ADE/waveform/PVT shots (G1-G4), LVS/PEX shots.
