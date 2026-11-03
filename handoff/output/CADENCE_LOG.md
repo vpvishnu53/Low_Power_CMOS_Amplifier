@@ -35,3 +35,8 @@ Rules for this session: work only inside Virtuoso/Assura/Quantus; back up before
 - Captured but NOT markered: screenshots/G2b_sized_AC_mc_no_markers.jpg (sized, section mc, gain/phase left, /out magnitude right). Needs markers (DC gain, unity-gain frequency, phase at unity gain) before it goes in the report. The first tt run's plot was not saved (wrong section for the report).
 - ADE model section left at `mc` (as found). ADE state1 loaded in session; nothing saved.
 - Still to do: markers on this plot, baseline run (swap in Low_AmpSd_base), transient bench, PVT, S27/S28.
+
+## Decision and marker attempt (07:04-07:06)
+- Student confirmed: use model section `mc` for all AC and transient numbers in the report (tt only for the typical corner row of PVT, if at all). Checklist G0.2 and Morning_Guide wording that says "section tt" must be updated accordingly. [TO DO in docs]
+- Marker attempt on the sized AC plot (mc): Marker -> Create Marker... in this Virtuoso build does NOT snap Y to the trace. With Attach to Trace ticked and X = 1 Hz, it placed M1 at 1.0 Hz / -63.284 dB (the Y field keeps a stale value; the real gain at 1 Hz is about +46.7 dB). That marker was wrong, so it was deleted (Marker -> Delete All). No marker values are recorded. Typing a Y value would be inventing data, so I did not.
+- Next try: read DC gain / unity-gain frequency / phase margin via ADE calculator functions or ADE Results -> Print, or the viewer's Measurements menu, instead of the Create Marker dialog.
